@@ -1,30 +1,34 @@
-let series; 
+document.getElementById("e").checked = true;
 
-const check = {
-    'e': false, 't': false, 'i': false, 'a': false, 'n': false, 'm': false,
-    's': false, 'u': false, 'r': false, 'w': false, 'd': false, 'k': false,
-    'g': false, 'o': false, 'h': false, 'v': false, 'f': false, 'l': false,
-    'p': false, 'j': false, 'b': false, 'x': false, 'c': false, 'y': false,
-    'z': false, 'q': false,
-}
+document.getElementById("train").addEventListener('click', e => {
+    const trainer = new Trainer();
 
-function* shuffle(check) {
-    const selected = Object.entries(check)
-        .filter(([c, s]) => s)
-        .map(([c, s]) => c);
+    document.querySelectorAll(".node").forEach(node => {
+        node.addEventListener('click', e => {
+            const check = e.target.checked;
+            const willUncheckAll = trainer.map.selected.length == 1 && !check;
+            const isKeyboardClick = e.detail === 0 && !e.pointerType;
 
-    while (true) {
-        const index = Math.floor(Math.random() * selected.length);
-        yield selected[index];
-    }
-}
+            if (willUncheckAll || isKeyboardClick)
+                return e.preventDefault();
 
-const nodes = document.querySelectorAll(".node");
-
-nodes.forEach(node => {
-    node.addEventListener('change', e => {
-        const code = e.target.value;
-        check[code] = e.target.checked;
-        series = shuffle(check);
+            const code = e.target.value.toLowerCase();
+            trainer.map.set(code, check);
+        });
     });
+
+    document.addEventListener('keypress', e => {
+        const code = e.key.toLowerCase()
+
+        if (code == ' ') {
+            trainer.playCurrentCode();
+        } else if (code == trainer.code) {
+            console.log("helal");
+            trainer.next();
+            trainer.playCurrentCode();
+        }
+    });
+
+    document.getElementById("welcome").style.display = "none";
 });
+

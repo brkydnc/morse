@@ -1,8 +1,8 @@
-const DOT = 0.1;
+const DOT = 0.1
 const DASH = 3 * DOT;
-const WAIT_NEXT_MARK = DOT / 2; 
+const DELAY = DOT / 2;
 
-const morse = {
+const BREAKDOWN = {
     'e': [DOT],
     't': [DASH],
     'i': [DOT, DOT],
@@ -31,26 +31,82 @@ const morse = {
     'q': [DASH, DASH, DOT, DASH],
 }
 
-const play = code => {
-    const audioContext = new AudioContext();
-    const gain = audioContext.createGain();
-    const oscillator = new OscillatorNode(audioContext, {
-        frequency: 800,
-        type: "sine",
-    });
+class Player {
+    constructor() {
+        // Initialize WebAudio elements.
+        this.context = new AudioContext();
+        this.gain = new GainNode(this.context, { gain: 0, });
+        this.oscillator = new OscillatorNode(this.context, {
+            frequency: 800,
+            type: "sine",
+        });
 
-    oscillator.connect(gain);
-    gain.connect(audioContext.destination);
+        // Make the connections, Oscillator -> Gain -> Destination 
+        this.oscillator.connect(this.gain);
+        this.gain.connect(this.context.destination);
 
-    for (let m = 0, k = audioContext.currentTime; m < morse[code].length; m++) {
-        const duration = morse[code][m];
-        gain.gain.setValueAtTime(1, k);
-        gain.gain.setValueAtTime(0, k + duration);
-        k += WAIT_NEXT_MARK + duration;
+        // Start the oscillator.
+        this.oscillator.start();
     }
 
-    oscillator.start();
+    // Play the audio of a morse code.
+    play(code) {
+        const t = this.context.currentTime;
 
-    return oscillator;
+        // Cancel future values so that the only playing code is the current one.
+        this.gain.gain.cancelScheduledValues(t);
+
+        // Create morse audio.
+        for (let i = 0, k = t; i < BREAKDOWN[code].length; i++) {
+            const duration = BREAKDOWN[code][i];
+            this.gain.gain.setValueAtTime(1, k);
+            this.gain.gain.setValueAtTime(0, k + duration);
+            k += DELAY + duration;
+        }
+    }
 }
 
+class ToggleMap {
+    constructor() {
+        // The list of selected codes.
+        this.selected = [];
+
+        // The code toggle map.
+        this.map = {
+            'e': false, 't': false, 'i': false, 'a': false, 'n': false,
+            'm': false, 's': false, 'u': false, 'r': false, 'w': false,
+            'd': false, 'k': false, 'g': false, 'o': false, 'h': false,
+            'v': false, 'f': false, 'l': false, 'p': false, 'j': false,
+            'b': false, 'x': false, 'c': false, 'y': false, 'z': false,
+            'q': false,
+        }
+    }
+
+    // Select or unselect a morse code.
+    set(code, value) {
+        this.map[code] = value;
+        this.selected = Object.entries(this.map)
+            .filter(([_, selected]) => selected)
+            .map(([code, _]) => code);
+    }
+}
+
+class Trainer {
+    constructor() {
+        this.code = 'e';
+        this.player = new Player();
+        this.map = new ToggleMap();
+
+        this.map.set('e', true);
+    }
+
+    playCurrentCode() {
+        this.player.play(this.code);
+    }
+
+    next() {
+        // Pick a random code from selected codes. 
+        const index = Math.floor(Math.random() * this.map.selected.length);
+        this.code = this.map.selected[index];
+    }
+}
