@@ -1,6 +1,6 @@
 const DOT = 0.1
 const DASH = 3 * DOT;
-const DELAY = DOT / 2;
+const DELAY = DOT;
 
 const BREAKDOWN = {
     'e': [DOT],
