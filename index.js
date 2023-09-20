@@ -31,9 +31,9 @@ document.getElementById("train").addEventListener('click', e => {
 
             const stats = trainer.stats();
 
-            correctCounter.textContent = stats.correct;
-            wrongCounter.textContent = stats.wrong;
-            accuracyCounter.textContent = `${stats.accuracy.toFixed(2).toString()}%`;
+            correctCounter.textContent = `correct: ${stats.correct}`;
+            wrongCounter.textContent = `wrong: ${stats.wrong}`;
+            accuracyCounter.textContent = `accuracy: ${stats.accuracy.toFixed(2).toString()}%`;
         }
     });
 
