@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>morse</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+
+        <div id="welcome">
+            <b id="title">morse</b>
+            <p id="description">the morse code trainer.<p>
+            <button id="train" type="button">train</button>
+        </div>
+
+        <div id="container"> 
+            <div id="tree">
+                <div class="node">
+                    <input id="e" class="checkbox" type="checkbox" autocomplete="off" value="e" />
+                    <div class="code">e</div>
+                </div>
+                <div class="node">
+                    <input type="checkbox" class="checkbox" autocomplete="off" value="t" />
+                    <div class="code">t</div>
+                </div>
+                <div class="node">
+                    <input type="checkbox" class="checkbox" autocomplete="off" value="i" />
+                    <div class="code">i</div>
+                </div>
+                <div class="node">
+                    <input type="checkbox" class="checkbox" autocomplete="off" value="a" />
+                    <div class="code">a</div>
+                </div>
+                <div class="node">
+                    <input type="checkbox" class="checkbox" autocomplete="off" value="n" />
+                    <div class="code">n</div>
+                </div>
+                <div class="node">
+                    <input type="checkbox" class="checkbox" autocomplete="off" value="m" />
+                    <div class="code">m</div>
+                </div>
+                <div class="node">
+                    <input type="checkbox" class="checkbox" autocomplete="off" value="s" />
+                    <div class="code">s</div>
+                </div>
+                <div class="node">
+                    <input type="checkbox" class="checkbox" autocomplete="off" value="u" />
+                    <div class="code">u</div>
+                </div>
+                <div class="node">
+                    <input type="checkbox" class="checkbox" autocomplete="off" value="r" />
+                    <div class="code">r</div>
+                </div>
+                <div class="node">
+                    <input type="checkbox" class="checkbox" autocomplete="off" value="w" />
+                    <div class="code">w</div>
+                </div>
+                <div class="node">
+                    <input type="checkbox" class="checkbox" autocomplete="off" value="d" />
+                    <div class="code">d</div>
+                </div>
+                <div class="node">
+                    <input type="checkbox" class="checkbox" autocomplete="off" value="k" />
+                    <div class="code">k</div>
+                </div>
+                <div class="node">
+                    <input type="checkbox" class="checkbox" autocomplete="off" value="g" />
+                    <div class="code">g</div>
+                </div>
+                <div class="node">
+                    <input type="checkbox" class="checkbox" autocomplete="off" value="o" />
+                    <div class="code">o</div>
+                </div>
+                <div class="node">
+                    <input type="checkbox" class="checkbox" autocomplete="off" value="h" />
+                    <div class="code">h</div>
+                </div>
+                <div class="node">
+                    <input type="checkbox" class="checkbox" autocomplete="off" value="v" />
+                    <div class="code">v</div>
+                </div>
+                <div class="node">
+                    <input type="checkbox" class="checkbox" autocomplete="off" value="f" />
+                    <div class="code">f</div>
+                </div>
+                <div class="node">
+                    <input type="checkbox" class="checkbox" autocomplete="off" value="l" />
+                    <div class="code">l</div>
+                </div>
+                <div class="node">
+                    <input type="checkbox" class="checkbox" autocomplete="off" value="p" />
+                    <div class="code">p</div>
+                </div>
+                <div class="node">
+                    <input type="checkbox" class="checkbox" autocomplete="off" value="j" />
+                    <div class="code">j</div>
+                </div>
+                <div class="node">
+                    <input type="checkbox" class="checkbox" autocomplete="off" value="b" />
+                    <div class="code">b</div>
+                </div>
+                <div class="node">
+                    <input type="checkbox" class="checkbox" autocomplete="off" value="x" />
+                    <div class="code">x</div>
+                </div>
+                <div class="node">
+                    <input type="checkbox" class="checkbox" autocomplete="off" value="c" />
+                    <div class="code">c</div>
+                </div>
+                <div class="node">
+                    <input type="checkbox" class="checkbox" autocomplete="off" value="y" />
+                    <div class="code">y</div>
+                </div>
+                <div class="node">
+                    <input type="checkbox" class="checkbox" autocomplete="off" value="z" />
+                    <div class="code">z</div>
+                </div>
+                <div class="node">
+                    <input type="checkbox" class="checkbox" autocomplete="off" value="q" />
+                    <div class="code">q</div>
+                </div>
+            </div>
+
+            <div id="stats">
+                <div class="counter" id="correct">correct: 0</div>
+                <div class="counter" id="wrong">wrong: 0</div>
+                <div class="counter" id="accuracy">accuracy: NaN</div>
+            </div>
+        </div>
+
+        <footer>
+            <!-- <span> -->
+            <!--     how to play: using your mouse, select a set of letters to -->
+            <!--     guess. press space to hear the current letter. guess the -->
+            <!--     current letter by pressing a key on your keyboard. if you guess -->
+            <!--     correctly, the next letter will be selected randomly from the -->
+            <!--     set. -->
+            <!-- </span> -->
+            <div>
+                <a href="https://github.com/brkydnc/morse">source</a>
+                <a href="https://github.com/brkydnc">github</a>
+                <a href="https://x.com/brkydnc_">twitter</a>
+            </div>
+        </footer>
+
+        <script src="morse.js"></script>
+        <script src="index.js"></script>
+    </body>
+</html>
