@@ -1,9 +1,13 @@
+const correctCounter = document.getElementById("correct");
+const wrongCounter = document.getElementById("wrong");
+const accuracyCounter = document.getElementById("accuracy");
+
 document.getElementById("e").checked = true;
 
 document.getElementById("train").addEventListener('click', e => {
     const trainer = new Trainer();
 
-    document.querySelectorAll(".node").forEach(node => {
+    document.querySelectorAll(".checkbox").forEach(node => {
         node.addEventListener('click', e => {
             const check = e.target.checked;
             const willUncheckAll = trainer.map.selected.length == 1 && !check;
@@ -22,10 +26,14 @@ document.getElementById("train").addEventListener('click', e => {
 
         if (code == ' ') {
             trainer.playCurrentCode();
-        } else if (code == trainer.code) {
-            console.log("helal");
-            trainer.next();
-            trainer.playCurrentCode();
+        } else {
+            trainer.feed(code);
+
+            const stats = trainer.stats();
+
+            correctCounter.textContent = stats.correct;
+            wrongCounter.textContent = stats.wrong;
+            accuracyCounter.textContent = `${stats.accuracy.toFixed(2).toString()}%`;
         }
     });
 

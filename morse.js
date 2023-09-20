@@ -94,6 +94,9 @@ class ToggleMap {
 class Trainer {
     constructor() {
         this.code = 'e';
+        this.correct = 0;
+        this.wrong = 0;
+
         this.player = new Player();
         this.map = new ToggleMap();
 
@@ -104,9 +107,23 @@ class Trainer {
         this.player.play(this.code);
     }
 
-    next() {
-        // Pick a random code from selected codes. 
-        const index = Math.floor(Math.random() * this.map.selected.length);
-        this.code = this.map.selected[index];
+    feed(code) {
+        if (code == this.code) {
+            const index = Math.floor(Math.random() * this.map.selected.length);
+            this.code = this.map.selected[index];
+            this.correct++;
+
+            this.playCurrentCode();
+        } else {
+            this.wrong++;
+        }
+    }
+
+    stats() {
+        return {
+            correct: this.correct,
+            wrong: this.wrong,
+            accuracy: 100 * this.correct / (this.correct + this.wrong),
+        }
     }
 }

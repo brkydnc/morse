@@ -1,36 +1,118 @@
 html, body {
     margin: 0;
     padding: 0;
-    background: #303030;
     font-family: monospace;
+    height: 100%;
 }
 
 #welcome {
-    width: 100vw;
-    height: 100vh;
     position: absolute;
-    background: #303030;
     z-index: 1337;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background: white;
+}
+
+#container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 #tree {
-    width: 300px;
-    height: 300px;
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); 
+    display: grid; 
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: repeat(13, 1fr);
+    gap: 0px;
 }
 
 .node {
     display: inline-block;
-    background: #292929;
-    color: #ededed;
-    border: solid #252525 .1rem;
-    padding: 1rem;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin: 1px;
 }
+
+.checkbox {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkbox:checked + .code {
+    background: lightgreen;
+}
+
+.code {
+    transition: 50ms;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    font-size: 2rem;
+    font-weight: bold;
+    z-index: -2;
+    border-radius: 10%;
+    border: solid 3px black;
+    box-sizing: border-box;
+}
+
+#stats {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space;
+    align-items: center;
+    width: 200px;
+}
+
+.counter {
+    margin: 0rem 3px;
+    text-align: center;
+    font-weight: 900;
+    border-radius: 5px;
+    border: solid 2px black;
+    box-sizing: border-box;
+}
+
+#correct {
+    background: lightgreen;
+    flex-basis: 50px;
+}
+
+#wrong {
+    background: lightcoral;
+    flex-basis: 50px;
+}
+
+#accuracy {
+    flex-basis: 100px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    left: 50%;
+    display: flex;
+    transform: translate(-50%,-50%);
+    justify-content: center;
+}
+
+footer a {
+    margin: 0 3px 0 3px;
+    font-weight: 900;
+    text-decoration:none; 
+    color: gray;
+}
+
+footer a:visited { color: gray; }
+footer a:hover { color: black; }
