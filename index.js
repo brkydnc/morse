@@ -18,6 +18,11 @@ document.getElementById("train").addEventListener('click', e => {
 
             const code = e.target.value.toLowerCase();
             trainer.map.set(code, check);
+
+            if (code == trainer.code && check == false) {
+                trainer.randomize();
+                console.log(trainer.code);
+            }
         });
     });
 
@@ -25,7 +30,7 @@ document.getElementById("train").addEventListener('click', e => {
         const code = e.key.toLowerCase()
 
         if (code == ' ') {
-            trainer.playCurrentCode();
+            trainer.play();
         } else {
             trainer.feed(code);
 

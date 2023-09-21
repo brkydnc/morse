@@ -103,17 +103,20 @@ class Trainer {
         this.map.set('e', true);
     }
 
-    playCurrentCode() {
+    play() {
         this.player.play(this.code);
+    }
+
+    randomize() {
+        const index = Math.floor(Math.random() * this.map.selected.length);
+        this.code = this.map.selected[index];
     }
 
     feed(code) {
         if (code == this.code) {
-            const index = Math.floor(Math.random() * this.map.selected.length);
-            this.code = this.map.selected[index];
             this.correct++;
-
-            this.playCurrentCode();
+            this.randomize();
+            this.play();
         } else {
             this.wrong++;
         }
