@@ -38,11 +38,24 @@ document.getElementById("start").addEventListener('click', e => {
         }
     });
 
+    document.getElementById("volume").addEventListener('input', e => {
+        const volume = Number(e.target.value) / 100;
+        trainer.player.volume(volume);
+    });
+
     document.getElementById("welcome").style.display = "none";
 });
 
 const howToPlayInfo = document.getElementById("how-to-play");
 document.getElementById("how-to-play-checkbox").addEventListener('click', e => {
     howToPlayInfo.style.visibility = (e.target.checked) ? 'visible' : 'hidden';
-    console.log('hi');
 });
+
+
+/* https://toughengineer.github.io/demo/slider-styler */
+for (let e of document.querySelectorAll('input[type="range"].slider-progress')) {
+    e.style.setProperty('--value', e.value);
+    e.style.setProperty('--min', e.min == '' ? '0' : e.min);
+    e.style.setProperty('--max', e.max == '' ? '100' : e.max);
+    e.addEventListener('input', () => e.style.setProperty('--value', e.value));
+}

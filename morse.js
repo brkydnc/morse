@@ -73,6 +73,10 @@ class Player {
 
         this.availableAfter = k + SPACE_BETWEEN_LETTERS - SPACE_BETWEEN_PARTS;
     }
+
+    volume(value) {
+        this.gain.gain.value = value;
+    }
 }
 
 class ToggleMap {
