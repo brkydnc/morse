@@ -1,6 +1,7 @@
 const DOT = 0.1
 const DASH = 3 * DOT;
-const DELAY = DOT;
+const SPACE_BETWEEN_PARTS = DOT;
+const SPACE_BETWEEN_LETTERS = 3 * DOT;
 
 const BREAKDOWN = {
     'e': [DOT],
@@ -47,22 +48,30 @@ class Player {
 
         // Start the oscillator.
         this.oscillator.start();
+
+        // After when, the player can play a new code.
+        this.availableAfter = this.context.currentTime;
     }
 
     // Play the audio of a morse code.
     play(code) {
         const t = this.context.currentTime;
 
+        if (t <= this.availableAfter) return;
+
         // Cancel future values so that the only playing code is the current one.
         this.gain.gain.cancelScheduledValues(t);
 
         // Create morse audio.
+        let k = t;
         for (let i = 0, k = t; i < BREAKDOWN[code].length; i++) {
             const duration = BREAKDOWN[code][i];
             this.gain.gain.setValueAtTime(1, k);
             this.gain.gain.setValueAtTime(0, k + duration);
-            k += DELAY + duration;
+            k += SPACE_BETWEEN_PARTS + duration;
         }
+
+        this.availableAfter = k + SPACE_BETWEEN_LETTERS - SPACE_BETWEEN_PARTS;
     }
 }
 

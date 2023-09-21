@@ -124,7 +124,7 @@ footer {
 }
 
 footer  * {
-    margin: 0 3px 0 3px;
+    margin: 0 6px 0 6px;
 }
 
 footer a {
@@ -137,6 +137,7 @@ footer a:hover { color: black; }
 
 #how-to-play-label {
     color: inherit;
+    transition: 80;
 }
 
 #how-to-play-label:hover {
