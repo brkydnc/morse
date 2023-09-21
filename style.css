@@ -96,10 +96,11 @@ html, body {
 }
 
 #stats {
+    width: 636px;
     margin-top: 1rem;
     display: grid; 
     grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr 1fr 2fr;
+    grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
     justify-items: center;
     align-items: center;
@@ -171,7 +172,7 @@ footer a:hover { color: black; }
 
 /* https://toughengineer.github.io/demo/slider-styler */
 input[type=range].volume {
-  width: 150px;
+  width: 75%;
   height: 2.2em;
   margin: 0;
   -webkit-appearance: none;
