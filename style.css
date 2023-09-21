@@ -107,29 +107,57 @@ html, body {
 }
 
 footer {
+    z-index: 2;
+    color: #bababa;
+
     position: fixed;
     bottom: 10px;
     left: 50%;
-    display: flex;
     transform: translate(-50%);
 
+    display: flex;
     justify-content: center;
     align-items: center;
+}
 
-    flex-direction: column;
-    z-index: 2;
+footer  * {
+    margin: 0 3px 0 3px;
 }
 
 footer a {
-    margin: 0 3px 0 3px;
     font-weight: 900;
     text-decoration:none; 
-    color: #bababa;
+    color: inherit;
 }
 
 footer a:hover { color: black; }
 
-footer span {
-    color: #bababa;
+#how-to-play-label {
+    color: inherit;
+}
+
+#how-to-play-label:hover {
+    color: black;
+    cursor: pointer;
+}
+
+#how-to-play-checkbox {
+    display: none;
+}
+
+#how-to-play-checkbox:checked + #how-to-play-label {
+    color: black;
+}
+
+#how-to-play {
+    position: absolute;
+    bottom: 7.5%;
+    left: 50%;
+    transform: translate(-50%);
+    margin: 0;
+    width: 500px;
+    z-index: 3;
     text-align: center;
+    color: #bababa;
+    visibility: hidden;
 }

@@ -18,11 +18,7 @@ document.getElementById("train").addEventListener('click', e => {
 
             const code = e.target.value.toLowerCase();
             trainer.map.set(code, check);
-
-            if (code == trainer.code && check == false) {
-                trainer.randomize();
-                console.log(trainer.code);
-            }
+            trainer.randomize();
         });
     });
 
@@ -45,3 +41,8 @@ document.getElementById("train").addEventListener('click', e => {
     document.getElementById("welcome").style.display = "none";
 });
 
+const howToPlayInfo = document.getElementById("how-to-play");
+document.getElementById("how-to-play-checkbox").addEventListener('click', e => {
+    howToPlayInfo.style.visibility = (e.target.checked) ? 'visible' : 'hidden';
+    console.log('hi');
+});
