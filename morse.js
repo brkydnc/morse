@@ -1,7 +1,7 @@
 const DOT = 0.1
 const DASH = 3 * DOT;
 const SPACE_BETWEEN_PARTS = DOT;
-const SPACE_BETWEEN_LETTERS = 3 * DOT;
+const SPACE_BETWEEN_WORDS = 7 * DOT;
 
 const BREAKDOWN = {
     'e': [DOT],
@@ -36,21 +36,23 @@ class Player {
     constructor() {
         // Initialize WebAudio elements.
         this.context = new AudioContext();
-        this.gain = new GainNode(this.context, { gain: 0, });
+        this.key = new GainNode(this.context, { gain: 0, });
+        this.amplification = new GainNode(this.context, { gain: 1, });
         this.oscillator = new OscillatorNode(this.context, {
             frequency: 800,
             type: "sine",
         });
 
-        // Make the connections, Oscillator -> Gain -> Destination 
-        this.oscillator.connect(this.gain);
-        this.gain.connect(this.context.destination);
+        // After when, the player can play a new code.
+        this.availableAfter = this.context.currentTime;
+
+        // Make the connections.
+        this.oscillator.connect(this.key);
+        this.key.connect(this.amplification);
+        this.amplification.connect(this.context.destination);
 
         // Start the oscillator.
         this.oscillator.start();
-
-        // After when, the player can play a new code.
-        this.availableAfter = this.context.currentTime;
     }
 
     // Play the audio of a morse code.
@@ -60,22 +62,22 @@ class Player {
         if (t <= this.availableAfter) return;
 
         // Cancel future values so that the only playing code is the current one.
-        this.gain.gain.cancelScheduledValues(t);
+        this.key.gain.cancelScheduledValues(t);
 
         // Create morse audio.
         let k = t;
         for (let i = 0, k = t; i < BREAKDOWN[code].length; i++) {
             const duration = BREAKDOWN[code][i];
-            this.gain.gain.setValueAtTime(1, k);
-            this.gain.gain.setValueAtTime(0, k + duration);
+            this.key.gain.setValueAtTime(1, k);
+            this.key.gain.setValueAtTime(0, k + duration);
             k += SPACE_BETWEEN_PARTS + duration;
         }
 
-        this.availableAfter = k + SPACE_BETWEEN_LETTERS - SPACE_BETWEEN_PARTS;
+        this.availableAfter = k + SPACE_BETWEEN_WORDS;
     }
 
     volume(value) {
-        this.gain.gain.value = value;
+        this.amplification.gain.value = value;
     }
 }
 
