@@ -4,7 +4,7 @@ const accuracyCounter = document.getElementById("accuracy");
 
 document.getElementById("e").checked = true;
 
-document.getElementById("train").addEventListener('click', e => {
+document.getElementById("start").addEventListener('click', e => {
     const trainer = new Trainer();
 
     document.querySelectorAll(".checkbox").forEach(node => {

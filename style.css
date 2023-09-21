@@ -16,6 +16,7 @@ html, body {
     flex-direction: column;
     background: white;
     z-index: 1;
+    user-select: none;
 }
 
 #title {
@@ -28,7 +29,7 @@ html, body {
     font-family: inherit;
 }
 
-#train {
+#start {
     text-align: center;
     font-family: inherit;
     font-weight: inherit;
@@ -38,7 +39,7 @@ html, body {
     text-underline-offset: 5px;
 }
 
-#train:hover {
+#start:hover {
     cursor: pointer;
     text-decoration-style: dotted;
 }
@@ -100,6 +101,7 @@ html, body {
     grid-template-rows: 1fr;
     grid-template-columns: 1fr 1fr 1fr;
     width: 500px;
+    user-select: none;
 }
 
 .counter {
@@ -118,6 +120,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    user-select: none;
 }
 
 footer  * {
