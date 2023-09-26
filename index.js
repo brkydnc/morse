@@ -6,7 +6,11 @@ document.getElementById("e").checked = true;
 
 document.getElementById("start").addEventListener('click', e => {
     const trainer = new Trainer();
-
+    
+    const volumeValue = document.getElementById("volume").value
+    const volume = Number(volumeValue) / 100;
+    trainer.player.volume(volume);
+    
     document.querySelectorAll(".checkbox").forEach(node => {
         node.addEventListener('click', e => {
             const check = e.target.checked;
